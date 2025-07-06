@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb72ba0cbtycj"]
+
+[ext_resource type="Script" uid="uid://c7nl7hmvr3qda" path="res://game_runner.gd" id="1_5ri5d"]
+
+[node name="GameRunner" type="Node"]
+script = ExtResource("1_5ri5d")
+bootup_sequence_scene = "uid://b8kmownd5skpb"
+main_menu_scene = "uid://dppo43dqettnk"
