@@ -23,21 +23,23 @@ that include more gameplay logic, but this template is not that.
 - Ideally, most everything should already be set up but just in case, here are the prerequisites for it to work
     - Configure the autoloads - These resources need to be autoloaded (**important** the Transitions and Pause Manager are `.tscn` files that need 
     to be autoloaded, not just the script.)
-    - - `transitions.tscn`
-    - - `pause_manager.tscn`
-    - - `save_manager.gd`
-    - - `audio_manager.gd`
-    - - `settings_manager.gd`
-    - - `main_instances.gd`
-    - Set `game_runner.tscn` as the Main Scene in the project settings (Project Settings -> General -> Application -> Run -> Main Scene)
+        - `transitions.tscn`
+        - `pause_manager.tscn`
+        - `save_manager.gd`
+        - `audio_manager.gd`
+        - `settings_manager.gd`
+        - `main_instances.gd`
+    - Set `game_runner.tscn` as the Main Scene in the project settings `(Project Settings -> General -> Application -> Run -> Main Scene)`
     - Open the `game_runner.tscn` and set the two "Start Up Scenes" export variables (if they're not already set):
-    - - Bootup Sequence: `res://stock_system_scenes/stock_bootup_sequence.tscn`
-    - - Main Menu Scene: `res://stock_system_scenes/stock_main_menu.tscn`
-- Once the game starts with no errors and you see the menu. Follow the [long start guide](docs/long_start_guide.md) to get an actual game running.
+        - Bootup Sequence: `res://stock_system_scenes/stock_bootup_sequence.tscn`
+        - Main Menu Scene: `res://stock_system_scenes/stock_main_menu.tscn`
+- Once the game starts with no errors and you see the menu you're ready for the next step. 
 
-# Systems
-Docs for the various systems in order of importance for getting your game off the ground. I recommend reading these in order the first time 
-then coming back to reference them as needed.
+# Next Steps
+Follow the [long start guide](docs/long_start_guide.md) to get an actual game running.
+
+# System Reference
+Docs for the various systems in order of importance for getting your game off the ground. I recommend first reading the [long start guide](docs/long_start_guide.md) then reading these in order the first time then coming back to reference them as needed.
 - [Game Runner](docs/systems/game_runner.md) - The main scene of the game and the main orchestrator of everything
 - [Save Manager](docs/systemssave_manager.md) - The functionality for saving and loading your game along with entity persistence
 - [Main Instances](docs/systemsmain_instances.md) - A singleton for storing references for important instances needed across the game
