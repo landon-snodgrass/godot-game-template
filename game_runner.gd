@@ -35,9 +35,5 @@ func change_scene(scene_path: String) -> Node:
 
 func _go_to_main_menu() -> void:
 	await Transitions.fade_out_to_black();
-	current_scene.queue_free();
-	await current_scene.tree_exited;
-	var main_menu_instance: Node = load(main_menu_scene).instantiate();
-	current_scene = main_menu_instance;
-	add_child(current_scene);
+	var main_menu = await change_scene(main_menu_scene);
 	await Transitions.fade_in_from_black();

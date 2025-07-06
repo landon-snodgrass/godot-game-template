@@ -35,7 +35,9 @@ func _on_continue_pressed() -> void:
 	start_loaded_game()
 
 func _on_settings_pressed() -> void:
-	MainInstances.game_runner.change_scene(settings_scene)
+	await Transitions.fade_out_to_black()
+	await MainInstances.game_runner.change_scene(settings_scene)
+	await Transitions.fade_in_from_black()
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()

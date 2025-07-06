@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8kmownd5skpb"]
+[gd_scene load_steps=3 format=3 uid="uid://b8kmownd5skpb"]
 
-[ext_resource type="Script" uid="uid://q44unjlakmq" path="res://system_scenes/bootup_sequence.gd" id="1_1oeo5"]
+[ext_resource type="Script" uid="uid://q44unjlakmq" path="res://stock_system_scenes/stock_bootup_sequence.gd" id="1_1oeo5"]
 [ext_resource type="Texture2D" uid="uid://b2hkcwwq10cut" path="res://icon.png" id="2_a7285"]
-[ext_resource type="Texture2D" uid="uid://d04bhsaiqppcd" path="res://images/gloot_logo_128x128.png" id="3_fd303"]
 
 [node name="BootupSequence" type="Control"]
 layout_mode = 3
@@ -12,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1oeo5")
-logo_textures = Array[Texture]([ExtResource("2_a7285"), ExtResource("3_fd303")])
+logo_textures = Array[Texture]([ExtResource("2_a7285")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

@@ -4,3 +4,4 @@
 
 [node name="PauseManager" type="Node"]
 script = ExtResource("1_iy7ql")
+pause_menu_scene = "uid://vsxctqbbiiki"
