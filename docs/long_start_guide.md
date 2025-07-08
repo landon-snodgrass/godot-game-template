@@ -2,6 +2,8 @@
 This guide is here to help you actually get your game running and use the template. The first part is just the bare minimum to get gameplay in the game
 and the second part is a list of suggestions to use the template to it's fullest.
 
+> **NOTE:** If the project won't run and you're getting errors, checkout the "Quick Start" portion of the [README](../README.md) to get the project setup first.
+
 ## Bare minimum
 Basically, you'll need to implement the `start_new_game()` function in the `stock_system_scenes/stock_main_menu.tscn` node. This could look something like
 this:
@@ -53,3 +55,114 @@ This would do something very similar but would pull the scene to load from the s
 
 > **IMPORTANT NOTE REGARDING CHANGING SCENES:** While the `game_runner.change_scene` function happens in a matter of a frame or two (basically instantly) the transitions have a default time of 0.5 seconds which means you **might want to consider pausing input** during these transitions. Depending on your game, you may want to pause the tree either manually or by using the Pause Manager or you may just want to pause input on the player and then unpause it once the game has faded back in. Just a heads up. 
     
+## Save Manager
+This is probably the next most important thing to learn to make your game work. A more detailed guide on the Save Manager is [here](../docs/systems/save_manager.md). This
+will just be a brief overview to get you up and running as quickly as possible.
+
+The Save Manager has to foundational parts: 
+- **The persistence cache** - The system for individual entities to save they're data. For example, if you chop down a tree and it needs to stay in the chopped down state.
+The persistence cache will work for both in-session persistence (you leave a level and come back and everything is still the same) and for writing the information to disk (you save the game, turn it off, then turn it back on and the tree is still chopped down).
+- **The system save data** - This system is for more global save data like the player's inventory, player's stats, general game progression, etc. 
+
+### How to use:
+
+**Persistence Cachce:**
+
+For object persistence you'll be using the `Stasher` class. This example I'll give will be for the tree example but this is a pretty flexible system that can be used for
+a lot of different things.
+
+``` 
+class_name Tree
+extends StaticBody2D
+
+var stash = Stasher.new().set_target(self);
+
+func _ready():
+    # Check if the tree has been chopped down
+    if stasher.retrieve_property("is_chopped"):
+        queue_free() # For simplicity's sake, we're freeing but you could just as easily set the state instead
+
+# The function that runs when a tree is chopped down (assumingly after being hit with an axe or something)
+func chop_down():
+    # Save the property
+    stasher.stash_property("is_chopped", true);
+    queue_free();
+```
+
+The two key methods are the `stasher.retrieve_property` and the `stasher.stash_property` methods. The Stasher class will store a custom ID for this entity and then
+retrieve the data based on that ID. 
+
+> **Important Note:** The ID is based off of the Node's starting position in the scene so if this changes during development (for example you move an enemy around in the level) the persistence data won't work for that entity. Similarly, if you place to entities in the exact same position, it won't work correctly either. In the future, I want to create 
+support for custom entity IDs for this reason but it's not done yet.
+
+**System Save Data:**
+For saving more global system data like an inventory or stats, you'll use the `SystemSaveData` class. This class should be extended for each system that needs data to be saved
+and should implement the `serialize` and `deserialize` functions for whatever your system needs. Here's an example with a PlayerStats system:
+
+```
+# PlayerStatsSaveData.gd
+# This is the class that extends the SystemSaveData not the Player Stats class itself
+
+class_name PlayerStatsSaveData.gd
+extends SystemSaveData
+
+func serialize() -> Dictionary:
+    return {
+        "level": system.level,
+        "experience: system.experience,
+        "gold: system.gold,
+    }
+
+func deserialize(data: Dictionary) -> void:
+    system.level = data.get("level", 1);
+    system.experience = data.get("experience", 0);
+    system.gold = data.get("gold", 0);
+```
+
+```
+# PlayerStats.gd
+# This would be the actual stats class
+
+class_name PlayerStats
+extends Node
+
+var save_data: PlayerStatsSaveData
+
+func _ready() -> void:
+    save_data = PlayerStatsSaveData.new(self, "player_stats");
+```
+
+The SystemSaveData class automatically register with the Save Manager and handle saving the data to disk and has a
+`system` variable that it'll automatically assign. The `_init` function needs a Node as it's first argument and then a unique key as it's second argument.
+
+The Save Manager will call `serialize` on each registered system and save that data to disk under the ID provided. It will also call `deserialize` when the 
+game is loaded.
+
+**Highly Recommended:** The systems using this save system should be autoloads so they're always available. 
+
+**Saving and Loading Operations:**
+```
+# Saves game into default slot
+SaveManager.save_game()
+
+# Load game from default slot
+SaveManager.load_game()
+
+# Save/load from various slots
+SaveManager.save_game(1) # Save to slot 1
+SaveManager.load_game(2) # Load from slot 2
+
+# Helpers for slot based saving
+var slot_info = SaveManager.get_slot_info(3) # returns basic info about slot
+if slot_info.exists:
+    print("Save found from: ", slot_info.timestamp)
+
+var most_recent_slot = SaveManager.get_most_recent_slot();
+# You'll probably use this to implement a "continue" button
+
+# Deletes the slot
+SaveManage.delete_slot(4);
+```
+
+> **Note:** I plan to implement better slot info functionality since the info you get is sparsed currently, it just gives you a timestamp, the slot number, and if it exists. 
+It would be nice to have that be extensible so it could return custom data based on your game like "Player Name" or "Percent Complete".
