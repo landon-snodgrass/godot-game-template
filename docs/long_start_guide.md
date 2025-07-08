@@ -186,3 +186,6 @@ The final value of the path takes the slot into account and will look more like 
 Feel free to chamge those as you see fit.
 
 The system also stores a backup at each save and will attempt to load this backup when call the `load_game` function if the current save is corrupted.
+
+## Next steps:
+The next steps would be customizing the "stock scenes" in the `stock_system_scenes/` directory and to read through the rest of the docs.
