@@ -1,8 +1,8 @@
 extends Node
 
 
-const TEST_PATH := "res://game_save.save";
-const PRODUCTION_PATH := "user://game_save.save";
+const TEST_PATH := "res://game_save";
+const PRODUCTION_PATH := "user://game_save";
 
 var base_save_path := TEST_PATH;
 var max_slots: int = 10;

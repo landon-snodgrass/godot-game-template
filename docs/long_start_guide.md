@@ -59,7 +59,12 @@ This would do something very similar but would pull the scene to load from the s
 This is probably the next most important thing to learn to make your game work. A more detailed guide on the Save Manager is [here](../docs/systems/save_manager.md). This
 will just be a brief overview to get you up and running as quickly as possible.
 
-The Save Manager has to foundational parts: 
+The Save System is a slot based system meaning that each slot is a single play through with one loadable save. Think Stardew Valley where you just load your slot rather than
+something like Baldur's Gate where there are many slots and you can load an old save.
+
+> Note: This will be extended in the future to include a more flexible slot system where each slot can have multiple saves.
+
+The Save Manager has two foundational parts: 
 - **The persistence cache** - The system for individual entities to save they're data. For example, if you chop down a tree and it needs to stay in the chopped down state.
 The persistence cache will work for both in-session persistence (you leave a level and come back and everything is still the same) and for writing the information to disk (you save the game, turn it off, then turn it back on and the tree is still chopped down).
 - **The system save data** - This system is for more global save data like the player's inventory, player's stats, general game progression, etc. 
@@ -75,7 +80,7 @@ a lot of different things.
 class_name Tree
 extends StaticBody2D
 
-var stash = Stasher.new().set_target(self);
+var stasher = Stasher.new().set_target(self);
 
 func _ready():
     # Check if the tree has been chopped down
@@ -109,8 +114,8 @@ extends SystemSaveData
 func serialize() -> Dictionary:
     return {
         "level": system.level,
-        "experience: system.experience,
-        "gold: system.gold,
+        "experience": system.experience,
+        "gold": system.gold,
     }
 
 func deserialize(data: Dictionary) -> void:
@@ -166,3 +171,18 @@ SaveManage.delete_slot(4);
 
 > **Note:** I plan to implement better slot info functionality since the info you get is sparsed currently, it just gives you a timestamp, the slot number, and if it exists. 
 It would be nice to have that be extensible so it could return custom data based on your game like "Player Name" or "Percent Complete".
+
+**Some additional things:**
+The paths for the save file are configured in the `system_managers/save_manager.gd` file here:
+```
+const TEST_PATH := "res://game_save";
+const PRODUCTION_PATH := "user://game_save";
+
+var base_save_path := TEST_PATH;
+```
+
+The final value of the path takes the slot into account and will look more like `user://game_save_slot_2.save`
+
+Feel free to chamge those as you see fit.
+
+The system also stores a backup at each save and will attempt to load this backup when call the `load_game` function if the current save is corrupted.
