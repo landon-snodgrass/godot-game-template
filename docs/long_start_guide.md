@@ -187,5 +187,24 @@ Feel free to chamge those as you see fit.
 
 The system also stores a backup at each save and will attempt to load this backup when call the `load_game` function if the current save is corrupted.
 
+## Sound and Music
+The Audio Manager is pretty simple, you can play music, ambient sounds, and non positional sounds (for positional sounds see below). The general architecture is that one music track can be playing at once, whereas multiple ambient sounds can be playing and multiple sfx can be playing. The SFX are divided into standard SFX and UI SFX, this is in case you have some sort of environmental effect (echo for a cave or something) on the SFX and you don't want the UI sounds affected. 
+
+The basic functions are:
+- `play_music` - plays an audio stream with optional fade in and sets it as the music track
+- `stop_music` - stops the music track with optional fade out
+- `pause_music` - pauses current music track
+- `resume_music` - resumes current music track
+- `play_ambience` - adds an ambience track to the sound pool and returns the ID of that ambient track
+- `stop_ambience` - stops the ambient track given the ID
+- `play_sfx` - plays standard SFX
+- `play_ui_sfx` - plays UI SFX
+
+Another kind of random and possibly helpful function is `play_music_intro_loop` this takes two AudioStreams and plays the first one once then the second one as a loop. This is in case you have a track that has an intro that you don't want to be in the loop.
+
+**Positional Sounds**
+For positional sounds you can either use the built in AudioStreamPlayer2D node, just remember to set the bus to SFX or you can use the custom node `SpatialAudioSource` (just add a new node like normal and select this from the list) which is a simple wrapper for an AudioStreamPlayer2D that sets the bus for you for convenience. 
+
+
 ## Next steps:
 The next steps would be customizing the "stock scenes" in the `stock_system_scenes/` directory and to read through the rest of the docs.

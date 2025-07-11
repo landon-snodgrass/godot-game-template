@@ -47,3 +47,6 @@ Docs for the various systems in order of importance for getting your game off th
 - [Transitions](docs/systemstransitions.md) - The singleton that handles screen fade ins and outs
 - [Audio Manager](docs/systemsaudio_manager.md) - The manager for playing music, ambiences, and SFX
 - [Settings Manager](docs/systemssettings_manager.md) - The manager for handling the settings of your game
+
+# ['Acknowledgments'](docs/acknowledgments.md)
+

@@ -151,7 +151,7 @@ func play_ambience(stream: AudioStream, volume_linear: float = 1.0, fade_in: flo
 	return ambient_id;
 
 
-func stop_ambient(ambient_id: int, fade_out: float = 0.0) -> void:
+func stop_ambience(ambient_id: int, fade_out: float = 0.0) -> void:
 	if not ambient_sources.has(ambient_id):
 		return;
 
@@ -166,9 +166,9 @@ func stop_ambient(ambient_id: int, fade_out: float = 0.0) -> void:
 		player.stop();
 
 
-func stop_all_ambient(fade_out: float = 0.0) -> void:
+func stop_all_ambiences(fade_out: float = 0.0) -> void:
 	for ambient_id in ambient_sources.keys():
-		stop_ambient(ambient_id, fade_out);
+		stop_ambience(ambient_id, fade_out);
 
 
 func _get_available_ambient_player() -> AudioStreamPlayer:
