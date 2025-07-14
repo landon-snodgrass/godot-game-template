@@ -19,9 +19,14 @@ func _ready() -> void:
 func fade_out_to_black(duration: float = 0.5) -> Signal:
 	if current_tween:
 		current_tween.kill();
+	# Can't pause during transitions
+	var can_pause = PauseManager.can_pause;
+	PauseManager.can_pause = false;
 	current_tween = get_tree().create_tween()
 	current_tween.tween_property(color_rect, "color", Color.BLACK, duration);
 	current_tween.play();
+	# Turn pausing back to whatver it was before
+	current_tween.tween_callback(func(): PauseManager.can_pause = can_pause)
 	return current_tween.finished;
 
 
@@ -30,7 +35,11 @@ func fade_out_to_black(duration: float = 0.5) -> Signal:
 func fade_in_from_black(duration: float = 0.5) -> Signal:
 	if current_tween:
 		current_tween.kill();
+	# Can't pause during transitions
+	var can_pause = PauseManager.can_pause;
+	PauseManager.can_pause = false;
 	current_tween = get_tree().create_tween();
 	current_tween.tween_property(color_rect, "color", Color("black", 0.0), duration);
 	current_tween.play();
+	current_tween.tween_callback(func(): PauseManager.can_pause = can_pause)
 	return current_tween.finished;

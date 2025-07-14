@@ -13,6 +13,7 @@ signal bootup_sequence_finished;
 
 
 func _ready() -> void:
+	PauseManager.can_pause = false;
 	if logo_textures.size() == 0:
 		skip_sequence();
 	else:
@@ -21,7 +22,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
+	if (Input.is_action_just_pressed("ui_accept")
+		|| Input.is_action_just_pressed("ui_cancel")
+		|| Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
 		skip_sequence();
 
 
