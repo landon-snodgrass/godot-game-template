@@ -60,17 +60,24 @@ func play_music(stream: AudioStream, fade_time: float = 1.0) -> void:
 
 	current_music = stream;
 
-	if fade_time > 0.0 and music_player.playing:
-		var tween = create_tween();
-		tween.set_parallel(true);
-		tween.tween_property(music_player, "volume_linear", 0.0, fade_time);
+	if fade_time > 0.0:
+		if music_player.playing:
+			var tween = create_tween();
+			tween.set_parallel(true);
+			tween.tween_property(music_player, "volume_linear", 0.0, fade_time);
 
-		queued_music_player.stream = stream
-		queued_music_player.volume_linear = 0;
-		queued_music_player.play()
-		tween.tween_property(queued_music_player, "volume_linear", 1.0, fade_time);
+			queued_music_player.stream = stream
+			queued_music_player.volume_linear = 0;
+			queued_music_player.play()
+			tween.tween_property(queued_music_player, "volume_linear", 1.0, fade_time);
 
-		tween.tween_callback(_swap_music_players).set_delay(fade_time);
+			tween.tween_callback(_swap_music_players).set_delay(fade_time);
+		else:
+			music_player.volume_linear = 0;
+			music_player.stream = stream;
+			music_player.play();
+			var tween = create_tween();
+			tween.tween_property(music_player, "volume_linear", 1.0, fade_time);
 	else:
 		music_player.stream = stream;
 		music_player.volume_linear = 1.0;
