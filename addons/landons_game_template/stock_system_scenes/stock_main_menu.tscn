@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dppo43dqettnk"]
 
-[ext_resource type="Script" uid="uid://bkewc0g3ru0bt" path="res://stock_system_scenes/stock_main_menu.gd" id="1_ax5nn"]
+[ext_resource type="Script" uid="uid://bkewc0g3ru0bt" path="res://addons/landons_game_template/stock_system_scenes/stock_main_menu.gd" id="1_ax5nn"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3

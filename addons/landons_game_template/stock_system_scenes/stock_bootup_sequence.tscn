@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8kmownd5skpb"]
 
-[ext_resource type="Script" uid="uid://q44unjlakmq" path="res://stock_system_scenes/stock_bootup_sequence.gd" id="1_1oeo5"]
+[ext_resource type="Script" uid="uid://q44unjlakmq" path="res://addons/landons_game_template/stock_system_scenes/stock_bootup_sequence.gd" id="1_1oeo5"]
 [ext_resource type="Texture2D" uid="uid://b2hkcwwq10cut" path="res://icon.png" id="2_a7285"]
 
 [node name="BootupSequence" type="Control"]

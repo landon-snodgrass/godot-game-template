@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ds64m8s7clcha"]
 
-[ext_resource type="Script" uid="uid://cbnlfo0x3o877" path="res://system_managers/transitions.gd" id="1_h1f5x"]
+[ext_resource type="Script" uid="uid://cbnlfo0x3o877" path="res://addons/landons_game_template/system_managers/transitions.gd" id="1_h1f5x"]
 
 [node name="Transitions" type="CanvasLayer"]
 layer = 100

@@ -8,7 +8,7 @@ as best as possible but the certain aspects of the template are very opinionated
 ## What it does
 - Handles saving/loading with an API to implement custom save data
 - Handles the main menu and settings menu (they can be customized for look and feel)
-    - The settings are saved automatically into a config file
+	- The settings are saved automatically into a config file
 - Handles music, SFX, and ambient sounds with an extendable API
 - Handles pausing with a fairly flexible pause manager
 - Handles scene transitions with fade in/out
@@ -21,19 +21,19 @@ that include more gameplay logic, but this template is not that.
 # Quick start
 - Download this repository and import it into Godot.
 - Ideally, most everything should already be set up but just in case, here are the prerequisites for it to work
-    - Configure the autoloads - These resources need to be autoloaded (**important** the Transitions and Pause Manager are `.tscn` files that need 
-    to be autoloaded, not just the script.)
-        - `transitions.tscn`
-        - `pause_manager.tscn`
-        - `save_manager.gd`
-        - `audio_manager.gd`
-        - `settings_manager.gd`
-        - `main_instances.gd`
-    - Set `game_runner.tscn` as the Main Scene in the project settings `(Project Settings -> General -> Application -> Run -> Main Scene)`
-    - Open the `game_runner.tscn` and set the two "Start Up Scenes" export variables (if they're not already set):
-        - Bootup Sequence: `res://stock_system_scenes/stock_bootup_sequence.tscn`
-        - Main Menu Scene: `res://stock_system_scenes/stock_main_menu.tscn`
-- Once the game starts with no errors and you see the menu you're ready for the next step. 
+	- Configure the autoloads - These resources need to be autoloaded (**important** the Transitions and Pause Manager are `.tscn` files that need
+	to be autoloaded, not just the script.)
+		- `transitions.tscn`
+		- `pause_manager.tscn`
+		- `save_manager.gd`
+		- `audio_manager.gd`
+		- `settings_manager.gd`
+		- `main_instances.gd`
+	- Set `game_runner.tscn` as the Main Scene in the project settings `(Project Settings -> General -> Application -> Run -> Main Scene)`
+	- Open the `game_runner.tscn` and set the two "Start Up Scenes" export variables (if they're not already set):
+		- Bootup Sequence: `res://stock_system_scenes/stock_bootup_sequence.tscn`
+		- Main Menu Scene: `res://stock_system_scenes/stock_main_menu.tscn`
+- Once the game starts with no errors and you see the menu you're ready for the next step.
 
 # Next Steps
 Follow the [long start guide](docs/long_start_guide.md) to get an actual game running.
@@ -49,4 +49,3 @@ Docs for the various systems in order of importance for getting your game off th
 - [Settings Manager](docs/systemssettings_manager.md) - The manager for handling the settings of your game
 
 # ['Acknowledgments'](docs/acknowledgments.md)
-

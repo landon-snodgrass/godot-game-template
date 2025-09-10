@@ -11,18 +11,21 @@ config_version=5
 [application]
 
 config/name="Game Template"
-run/main_scene="uid://cb72ba0cbtycj"
 config/features=PackedStringArray("4.4", "Forward Plus")
+
+[audio]
+
+buses/default_bus_layout="res://addons/landons_game_template/default_bus_layout.tres"
 
 [autoload]
 
-Transitions="*res://system_managers/transitions.tscn"
-SaveManager="*res://system_managers/save_manager.gd"
-MainInstances="*res://system_managers/main_instances.gd"
-SettingsManager="*res://system_managers/settings_manager.gd"
-AudioManager="*res://system_managers/audio_manager.gd"
-PauseManager="*res://system_managers/pause_manager.tscn"
+Transitions="*res://addons/landons_game_template/system_managers/transitions.tscn"
+SaveManager="*res://addons/landons_game_template/system_managers/save_manager.gd"
+MainInstances="*res://addons/landons_game_template/system_managers/main_instances.gd"
+SettingsManager="*res://addons/landons_game_template/system_managers/settings_manager.gd"
+AudioManager="*res://addons/landons_game_template/system_managers/audio_manager.gd"
+PauseManager="*res://addons/landons_game_template/system_managers/pause_manager.tscn"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/landon\'s_game_template/plugin.cfg")
