@@ -19,18 +19,13 @@ This is truly meant to just be a template that any game can be built on top of. 
 that include more gameplay logic, but this template is not that.
 
 # Quick start
-- Download this repository and import it into Godot.
-- Ideally, most everything should already be set up but just in case, here are the prerequisites for it to work
-	- Configure the autoloads - These resources need to be autoloaded (**important** the Transitions and Pause Manager are `.tscn` files that need
-	to be autoloaded, not just the script.)
-		- `transitions.tscn`
-		- `pause_manager.tscn`
-		- `save_manager.gd`
-		- `audio_manager.gd`
-		- `settings_manager.gd`
-		- `main_instances.gd`
-	- Set `game_runner.tscn` as the Main Scene in the project settings `(Project Settings -> General -> Application -> Run -> Main Scene)`
-	- Open the `game_runner.tscn` and set the two "Start Up Scenes" export variables (if they're not already set):
+- Download this repository and extract the files.
+- Add the folder `addons/landons_game_template` to your own `addons` folder (or create one if you don't have it)
+- Go to `Project -> Project Settings -> Plugins` and enable the game template plugin
+- Reload the project by click `Project -> Reload Current Project`
+- Create a Game Runner scene by creating a new scene, clicking `+ Other Node` and searching for Game Runner.
+- Set `game_runner.tscn` as the Main Scene in the project settings `(Project Settings -> General -> Application -> Run -> Main Scene)`
+	- Open the `game_runner.tscn` and set the two "Start Up Scenes" export variables:
 		- Bootup Sequence: `res://stock_system_scenes/stock_bootup_sequence.tscn`
 		- Main Menu Scene: `res://stock_system_scenes/stock_main_menu.tscn`
 - Once the game starts with no errors and you see the menu you're ready for the next step.
@@ -41,11 +36,11 @@ Follow the [long start guide](docs/long_start_guide.md) to get an actual game ru
 # System Reference
 Docs for the various systems in order of importance for getting your game off the ground. I recommend first reading the [long start guide](docs/long_start_guide.md) then reading these in order the first time then coming back to reference them as needed.
 - [Game Runner](docs/systems/game_runner.md) - The main scene of the game and the main orchestrator of everything
-- [Save Manager](docs/systemssave_manager.md) - The functionality for saving and loading your game along with entity persistence
-- [Main Instances](docs/systemsmain_instances.md) - A singleton for storing references for important instances needed across the game
-- [Pause Manager](docs/systemspause_manager.md) - The manager for pausing your game
-- [Transitions](docs/systemstransitions.md) - The singleton that handles screen fade ins and outs
-- [Audio Manager](docs/systemsaudio_manager.md) - The manager for playing music, ambiences, and SFX
-- [Settings Manager](docs/systemssettings_manager.md) - The manager for handling the settings of your game
+- [Save Manager](docs/systems/save_manager.md) - The functionality for saving and loading your game along with entity persistence
+- [Main Instances](docs/systems/main_instances.md) - A singleton for storing references for important instances needed across the game
+- [Pause Manager](docs/systems/pause_manager.md) - The manager for pausing your game
+- [Transitions](docs/systems/transitions.md) - The singleton that handles screen fade ins and outs
+- [Audio Manager](docs/systems/audio_manager.md) - The manager for playing music, ambiences, and SFX
+- [Settings Manager](docs/systems/settings_manager.md) - The manager for handling the settings of your game
 
-# ['Acknowledgments'](docs/acknowledgments.md)
+# [Acknowledgments](docs/acknowledgments.md)

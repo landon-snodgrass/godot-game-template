@@ -28,4 +28,4 @@ PauseManager="*res://addons/landons_game_template/system_managers/pause_manager.
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/landon\'s_game_template/plugin.cfg")
+enabled=PackedStringArray()
